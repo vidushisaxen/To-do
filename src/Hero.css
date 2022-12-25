@@ -1,0 +1,19 @@
+/* body{
+    background-image: radial-gradient(#82AAE3,#91D8E4,#BFEAF5,#EAFDFC);
+} */
+.hero{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.hero h1{
+    font-weight: 200;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+.txt{
+    font-family: cursive;
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

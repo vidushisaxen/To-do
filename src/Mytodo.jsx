@@ -1,8 +1,20 @@
 import React from 'react'
 import { useState } from 'react';
+import {MdDelete} from 'react-icons/md';
+import {AiOutlineToTop} from 'react-icons/ai';
+import {AiFillEdit} from 'react-icons/ai';
+import {MdOutlineAddTask} from 'react-icons/md';
+
 function Mytodo() {
     const[input,setInput]=useState("");
     const[list,setList]=useState([]);
+    const[show,setshow]=useState(true);
+    const[btnid,setbtnid]=useState(-1);
+
+    function visible(data){
+        setshow(!show);
+        setbtnid(data);
+    }
 
     const inputfun=(event)=>{
       setInput(event.target.value);
@@ -48,23 +60,26 @@ function Mytodo() {
     }, []);
     
   return (
+   
     <div className='main'>
     <div className='container'>
         <div className='heading'>
         <h1 className='head'>{datess}</h1>
         </div>
     <input type="text" placeholder='        Add Task' className='task' onChange={inputfun} value={input}></input>
-    <button onClick={add} className="add_btn">+</button>
+    <button onClick={add} className="add_btn"><MdOutlineAddTask/></button>
 
     <div>
         <ol>
         { list 
         && list.map((val,index)=> {
             return (
-            <div className='listbox'><li className='list_style'>
-            <button className='del' onClick={()=>{delete_task(index)}} key={index} id={index}>X</button>
-            <button className='top' onClick={()=>{top(index);}}>🔝</button>
-            <button className='edit' onClick={()=>{edit(val);}}>🖋️</button>
+             <div className='listbox'>  
+             <li className='list_style' onClick ={()=>visible(index)}>
+                {(show && btnid==index) ?<div className='vis'>
+                <button className='del' onClick={()=>{delete_task(index)}} key={index} id={index}><MdDelete color='red'/></button>
+            <button className='top' onClick={()=>{top(index);}}><AiOutlineToTop/></button>
+            <button className='edit' onClick={()=>{edit(val);}}><AiFillEdit/></button></div>:<div className='invisible'></div>}
             {val}
             </li>
             </div>
